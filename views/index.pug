@@ -1,8 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-  </svg>
+  <div class="container">
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+  <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+  <span class="fs-4">Hello, #{username} !</span>
+  </a>
+
+  <ul class="nav nav-pills">
+  <li class="nav-item"><a href="#" class="nav-link" aria-current="page">Home</a></li>
+  <li class="nav-item"><a href="#" class="nav-link" id="1">Facebook</a></li>
+  <li class="nav-item"><a href="/auth/google" class="nav-link" id="2">Google</a></li>
+  <li class="nav-item"><a href="#" class="nav-link" id="3">VK</a></li>
+  </ul>
+  </header>
+  </div>
