@@ -3,7 +3,8 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { username: req.user.displayName ? req.user.displayName : "Anonymous"});
+  let username = req.user ? 1 : 2;
+  res.render('index', { username: req.user ? req.user.displayName : "Anonymous"});
 });
 
 module.exports = router;
