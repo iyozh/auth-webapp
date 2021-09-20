@@ -20,15 +20,16 @@ passport.use(new GoogleStrategy({
         callbackURL: process.env.NODE_ENV === 'production' ? `https://${HOSTNAME}/auth/google/callback` :
             `http://${HOSTNAME}:${PORT}/auth/google/callback`
     },
-    function (accessToken, refreshToken, profile, done) {
-        const user = User.findOrCreate({
-            where: {
-                social_user_id: profile.id,
-                name: profile.displayName,
-                registration_type: "google",
-            },
-        });
-        done(null, user);
-    }));
+        async function (accessToken, refreshToken, profile, done) {
+            const [user, status] = await User.findOrCreate({
+                where: {
+                    social_user_id: profile.id,
+                    name: profile.displayName,
+                    registration_type: "google",
+                },
+            });
+            done(null, user);
+        }
+));
 
 module.exports = passport
