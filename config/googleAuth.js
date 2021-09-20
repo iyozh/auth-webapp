@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const User = require('../models/index')["User"];
 const config = require('./mainConfig');
 
 const HOSTNAME = config.app.host
@@ -20,8 +21,14 @@ passport.use(new GoogleStrategy({
             `http://${HOSTNAME}:${PORT}/auth/google/callback`
     },
     function (accessToken, refreshToken, profile, done) {
-        return done(null, profile);
-    }
-));
+        const user = User.findOrCreate({
+            where: {
+                social_user_id: profile.id,
+                name: profile.displayName,
+                registration_type: "google",
+            },
+        });
+        done(null, user);
+    }));
 
 module.exports = passport

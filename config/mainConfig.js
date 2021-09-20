@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const env = process.env.NODE_ENV;
 
-const dev = {
+const development = {
     app: {
         port: 3000,
         host: 'localhost'
@@ -10,10 +10,13 @@ const dev = {
     auth: {
         googleClientID: process.env.GOOGLE_CLIENT_ID,
         googleSecretKey: process.env.GOOGLE_SECRET_KEY
+    },
+    db: {
+        databaseUrl: process.env.DATABASE_URL,
     }
 };
 
-const prod = {
+const production = {
     app: {
         port: process.env.PORT,
         host: "authwebapplication.herokuapp.com"
@@ -21,12 +24,15 @@ const prod = {
     auth: {
         googleClientID: process.env.GOOGLE_CLIENT_ID,
         googleSecretKey: process.env.GOOGLE_SECRET_KEY
+    },
+    db: {
+        databaseUrl: process.env.DATABASE_URL,
     }
 };
 
 const config = {
-    dev,
-    prod
+    development,
+    production
 };
 
 module.exports = config[env];
