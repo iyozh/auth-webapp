@@ -17,7 +17,7 @@ passport.deserializeUser(function (user, done) {
 passport.use(new GoogleStrategy({
         clientID: config.auth.googleClientID,
         clientSecret: config.auth.googleSecretKey,
-        callbackURL: process.env.NODE_ENV === 'prod' ? `https://${HOSTNAME}/auth/google/callback` :
+        callbackURL: process.env.NODE_ENV === 'production' ? `https://${HOSTNAME}/auth/google/callback` :
             `http://${HOSTNAME}:${PORT}/auth/google/callback`
     },
     function (accessToken, refreshToken, profile, done) {
